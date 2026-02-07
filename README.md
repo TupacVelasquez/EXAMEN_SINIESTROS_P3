@@ -1,4 +1,4 @@
-# 🛡️ Sistema de Gestión de Siniestros
+# Sistema de Gestión de Siniestros
 
 Sistema distribuido para gestión de siniestros de seguros con Docker y Kubernetes.
 
@@ -10,7 +10,7 @@ Sistema distribuido para gestión de siniestros de seguros con Docker y Kubernet
 | **Proveedor** | Independiente | id, nombre, tipo (TALLER/CLÍNICA/GRÚA), ciudad |
 | **Siniestro** | Dependiente | id, numeroCaso (único), fecha, descripcion, montoEstimado, estado, FK→Póliza, FK→Proveedor |
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
@@ -20,7 +20,7 @@ Sistema distribuido para gestión de siniestros de seguros con Docker y Kubernet
 └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
 
-## 🚀 Despliegue en Kubernetes
+## Despliegue en Kubernetes
 
 ### Requisitos
 - Docker Desktop con Kubernetes habilitado
@@ -119,7 +119,7 @@ kubectl port-forward svc/siniestros-api 3001:3001
 | PUT | `/api/siniestros/{id}` | Actualizar |
 | DELETE | `/api/siniestros/{id}` | Eliminar |
 
-## 🧪 Pruebas con cURL
+## Pruebas con cURL
 
 ```bash
 # Crear póliza
@@ -138,10 +138,10 @@ curl -X POST http://localhost:3001/api/siniestros \
   -d '{"numeroCaso":"SIN-001","fecha":"2026-02-06","descripcion":"Choque menor","montoEstimado":500,"estado":"ABIERTO","polizaId":1,"proveedorId":1}'
 ```
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
-├── biela/                    # Backend Spring Boot
+├── siniestros/                    # Backend Spring Boot
 │   ├── src/main/java/com/espe/siniestros/
 │   │   ├── controllers/      # REST Controllers
 │   │   ├── models/entities/  # Entidades JPA
@@ -166,14 +166,10 @@ curl -X POST http://localhost:3001/api/siniestros \
     └── frontend-deployment.yaml
 ```
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Backend**: Java 17, Spring Boot 3.2, Spring Data JPA
 - **Base de Datos**: MySQL 8.0, PostgreSQL 15
 - **Frontend**: React 18, Vite, Axios
 - **Contenedores**: Docker, Nginx
 - **Orquestación**: Kubernetes
-
-## 👤 Autor
-
-ESPE - Sistemas Distribuidos - 2026
