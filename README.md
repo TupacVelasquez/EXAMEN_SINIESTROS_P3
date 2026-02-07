@@ -2,7 +2,7 @@
 
 Sistema distribuido para gestión de siniestros de seguros con Docker y Kubernetes.
 
-## 📋 Modelo de Datos
+## Modelo de Datos
 
 | Entidad | Tipo | Campos |
 |---------|------|--------|
@@ -88,7 +88,7 @@ kubectl port-forward svc/siniestros-api 3001:3001
 - **Frontend**: http://localhost:8080
 - **API**: http://localhost:3001/api/polizas
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### Pólizas
 | Método | Endpoint | Descripción |
