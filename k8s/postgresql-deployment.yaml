@@ -1,0 +1,59 @@
+# PostgreSQL Deployment para Proveedores
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+  labels:
+    app: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      containers:
+      - name: postgresql
+        image: postgres:15-alpine
+        env:
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "123456"
+        - name: POSTGRES_DB
+          value: proveedoresdb
+        ports:
+        - containerPort: 5432
+          name: postgresql
+        volumeMounts:
+        - name: postgresql-persistent-storage
+          mountPath: /var/lib/postgresql/data
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+      volumes:
+      - name: postgresql-persistent-storage
+        persistentVolumeClaim:
+          claimName: postgresql-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  labels:
+    app: postgresql
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: postgresql
